@@ -1,8 +1,8 @@
 // A list of pokemon that I choose from the website https://pokedex.org/
-//IIFE
 
+//Start of IIFE
 let pokemonRepository = (function () {
-    let pokemonList = [{
+    let repository = [{
         name: 'Quilava',
         height: 0.9,
         type: ['Fire']
@@ -24,49 +24,52 @@ let pokemonRepository = (function () {
     }];
   
     function add(pokemon) {
-        pokemonList.push(pokemon);
+        if(
+            typeof pokemon === "object" &&
+            "name" in pokemon &&
+            "height" in pokemon &&
+            "types" in pokemon
+        ){
+            repository.push(pokemon);
+        }
+        else{
+            console.log("Pokemon is not correct");
+        }
+        
     }
     function getAll() {
-        return pokemonList;
+        return repository;
     }
+
+    function addListItem(pokemon){
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listPokemon = document.createElement('li');
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");
+        listPokemon.appendChild(button);
+        pokemonList.appendChild(listPokemon);
+        button.addEventListener('click', function(){
+            showDetails(pokemon);
+        });
+    }
+    //This function will show the details of the pokemon.
+    function showDetails(pokemon){
+        console.log(pokemon);
+    }
+
+    //all return function values
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem,
+        showDetails: showDetails
     };
-  })();
+  })(); //end of IIFE
 
 // Updated forEach loop
-pokemonRepository.getAll().forEach(function(pokemon){
-    if(pokemon.height > 5)
-        document.write(pokemon.name + ", Height: " + pokemon.height + " m, Wow that is big! </br> ");
-    else if(pokemon.height < 0.9)
-    document.write(pokemon.name + ", Height: " + pokemon.height + " m, Wow that is smaller than I expected! </br> ");
-    else
-        document.write(pokemon.name + ", Height: " + pokemon.height + " m </br>");
-
+pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
   });
 
-console.log(pokemonRepository.getAll()); // []
-pokemonRepository.add({ name: 'Froslass', height: 5.2, type: ['Ice', 'Ghost']});
-console.log(pokemonRepository.getAll()); // { name: 'Froslass', height: 5.2, type: ['Ice', 'Ghost']}
-
-/*For-loop that will print out the pokemonList array on the page.*/
-/* Commented out in case I will need to reuse this code.
-for(let i = 0; i < pokemonList.length; i++)
-{
-    //Checks if any in the pokemonList height is over 5. If it is it will add It's big!
-    if(pokemonList[i].height > 5){
-        
-        document.write(pokemonList[i].name + ' (Hight: ' + pokemonList[i].height + ' m) Wow that is big! </br>');
-    }
-    //Checks the smallest in the pokemonList. If it is it will add It's small
-    else if (pokemonList[i].height < 0.9){
-        document.write(pokemonList[i].name + ' (Hight: ' + pokemonList[i].height + ' m) Wow that is smaller than I expected! </br>');
-    }
-    // Otherwise print out their height and name
-    else{ 
-        document.write(pokemonList[i].name + ' (Hight: ' + pokemonList[i].height + ' m) </br>');
-    }
-    
-}
-*/
+//console.log(pokemonRepository.getAll());
