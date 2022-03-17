@@ -2,8 +2,8 @@
 
 //Start of IIFE
 let pokemonRepository = (function () {
-    let repository = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
   
     function add(pokemon) {
         if(
@@ -12,7 +12,7 @@ let pokemonRepository = (function () {
             "height" in pokemon &&
             "types" in pokemon
         ){
-            repository.push(pokemon);
+          pokemonList.push(pokemon);
         }
         else{
             console.log("Pokemon is not correct");
@@ -20,13 +20,13 @@ let pokemonRepository = (function () {
         
     }
     function getAll() {
-        return repository;
+        return pokemonList;
     }
 
     function addListItem(pokemon){
         let pokemonList = document.querySelector(".pokemon-list");
         let listPokemon = document.createElement('li');
-        let button = document.createElement("button");
+        let button = document.createElement("button"); //create a button
         button.innerText = pokemon.name;
         button.classList.add("button-class");
         listPokemon.appendChild(button);
