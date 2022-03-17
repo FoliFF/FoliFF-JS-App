@@ -3,7 +3,7 @@
 //Start of IIFE
 let pokemonRepository = (function () {
     let pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   
     function add(pokemon) {
         if(
@@ -50,13 +50,6 @@ let pokemonRepository = (function () {
         });
     }
 
-    //This function will show the details of the pokemon.
-    function showDetails(pokemon){
-        loadDetails(pokemon).then(function(){
-            console.log(pokemon);
-        });
-    }
-
     function loadList() {
         return fetch(apiUrl).then(function (response) {
           return response.json();
@@ -73,6 +66,12 @@ let pokemonRepository = (function () {
         })
     }
 
+    //This function will show the details of the pokemon.
+    function showDetails(pokemon){
+      loadDetails(pokemon).then(function(){
+          console.log(pokemon);
+      });
+    }
     //all return function values
     return {
         add: add,
@@ -82,22 +81,11 @@ let pokemonRepository = (function () {
         loadList: loadList,
         loadDetails: loadDetails
     };
-  })(); //end of IIFE
+})(); //end of IIFE
 
 // Updated forEach loop
 pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
-      });
+    });
 });
-
-/*
-fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
-    return response.json(); // This returns a promise!
-    }).then(function (pokemonList) {
-    console.log(pokemonList); // The actual JSON response
-}).catch(function () {
-    // Error
-});
-
-*/
