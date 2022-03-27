@@ -4,7 +4,8 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  
+  let modalContainer = document.querySelector('#modal-container');
+
   function add(pokemon) {
     console.table(pokemon); //debugged my code to solve "pokemon is not correct"
       if(
@@ -73,14 +74,14 @@ let pokemonRepository = (function () {
         console.log(pokemon);
     });
   }
-
-    //Show Modal function
+  //Show Modal function
   function showModal(title, text) {
-    let modalContainer = document.querySelector('#modal-container');  
+
     // Clear all existing modal content
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
+    
     // Add the new modal content
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
@@ -101,8 +102,9 @@ let pokemonRepository = (function () {
     modalContainer.classList.add('is-visible');
   }
 
+  let dialogPromiseReject; //This can be set later, by showDialog
+
   function hideModal(){
-    let dialogPromiseReject; //This can be set later, by showDialog
     
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.classList.remove('is-visible');
@@ -138,13 +140,6 @@ function showDialog(title, text) {
 
   //Return a promise that resolves when confirmed, else rejects
   return new Promise((resolve, reject) => {
-    cancelButton.addEventListener('click', () => {
-      hideModal();
-      reject();
-    });
-  });
-
-  return new Promise((resolve, reject) => {
     cancelButton.addEventListener('click', hideModal);
     confirmButton.addEventListener('click', () => {
       dialogPromiseReject = null; // Reset this
@@ -160,7 +155,6 @@ function showDialog(title, text) {
 
   //Hide modal with esc key and Event Listener
   window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
     if(e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
       hideModal();
     }
@@ -178,7 +172,7 @@ function showDialog(title, text) {
     });
 
   });
-/*
+
   modalContainer.addEventListener('click', (e) => {
     // Since this is also triggered when clicking INSIDE the modal
     // We only want to close if the user clicks directly on the overlay
@@ -187,7 +181,7 @@ function showDialog(title, text) {
       hideModal();
     }
   });
-*/
+
   //all return function values
   return {
     add: add,
