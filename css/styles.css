@@ -22,6 +22,36 @@ html, body{
 
 /* Modal CSS container and styles*/
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    padding: 0.5rem 0;
+    background: lightgray;
+}
+
+#pokemon_logo {
+    padding: 2rem 0;
+    max-width: 50vw;
+    height: auto;
+}
+
+.modal-container {
+    position: fixed;
+    padding: 10px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba (0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 #modal-container {
     position: fixed;
     padding: 20px;
@@ -45,15 +75,28 @@ html, body{
 
 .modal {
     margin: auto;
-    display: inline-block;
+    display: flex;
     box-sizing: border-box;
     background: #fff;
+    box-shadow: 0 0 10px;
+    border-radius: 5px;
     padding: 15px;
     width: 100%;
-    max-width: 700px;
-    text-align: left;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
   
+.is-visible {
+    display: grid;
+}
+  
+.modal-img {
+    width: 10vw;
+    height: auto;
+}
+
 .modal-close {
     float: right;
     -webkit-appearance: none;
@@ -69,10 +112,6 @@ html, body{
   
 .modal p {
     margin-bottom: 0;
-}
-  
-#modal-container {
-    display: none;
 }
   
 #modal-container.is-visible {

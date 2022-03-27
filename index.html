@@ -8,22 +8,36 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
   <body>
-    <h1>PokemonDex</h1>
-    <button id="show-modal">Show modal</button>
-    <button id='show-dialog'>Show dialog</button>
-    <div id="modal-container">
-      <!-- <div class='modal'>
-        <button class='modal-close'>Close</button>
-        <h1>Modal title</h1>
-        <p>Modal text</p>       
-      </div> -->
+    <header class = "header">
+      <div class="header-item"><img id="pokemon_logo" src="img/pokemon_logo.png" alt="pokemon logo"></div>
+      <div class="form-inline"></div>
+    </header>
+
+    <div class="container">
+      <h1>Pokedex</h1>
+      <ul class="pokemon-list"></ul>
+      <div class='modal-container'>
+        <div class='modal'>
+          <button class='modal-close'>close</button>
+          <h1 class="modal-title"></h1>
+          <img class="modal-img" src="img/" alt="pokemon logo">
+          <p class="modal-text"></p>
+        </div>
+      </div>
     </div>
-    <ul class="pokemon-list"></ul>
+    
+    
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <strong>
       <script src="js/promise-polyfill.js"></script>
       <script src="js/fetch-polyfill.js"></script>
       <script src="js/scripts.js"></script>
     </strong>
-    
   </body>
 </html>
