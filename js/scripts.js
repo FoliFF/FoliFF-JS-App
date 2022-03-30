@@ -3,7 +3,7 @@
 //Start of IIFE
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
   let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
@@ -43,9 +43,15 @@ let pokemonRepository = (function () {
         return response.json();
         }).then(function (details) {
           // Now we add the details to the item
+          //console.log("details", details);
           item.imageUrl = details.sprites.front_default;
           item.height = details.height;
-          item.types = details.types;
+          //With help of Aroh Sunday made an for each function to display the types.
+          item.types = [];
+          Object.keys(details.types).forEach(function(property) {
+          item.types.push(details.types[property].type.name.toUpperCase());
+        });
+          //item.types = details.types;
         }).catch(function (e) {
           console.error(e);
     });
@@ -56,8 +62,9 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
+        //console.log("item", item)
         let pokemon = {
-            name: item.name,
+            name: item.name.charAt(0).toUpperCase() + item.name.slice(1), //This is so I will have a capital letter for the names of the Pokemon
             detailsUrl: item.url
         };
         add(pokemon);
