@@ -3,7 +3,7 @@
 //Start of IIFE
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=28';
   let modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
@@ -25,6 +25,35 @@ let pokemonRepository = (function () {
   }
 
   function addListItem(pokemon){
+    //Select unordered list in html file
+    let container = document.querySelector('.container-fluid');
+
+    //Create row div, col div, and button
+    let rowdiv = document.createElement('div');
+    let coldiv = document.createElement('div');
+    let button = document.createElement('button');
+
+    //set bootstrap classes and text to divs and button
+    rowdiv.classList.add('row', 'align-content-center', 'list-group-item', 'bg-secondary');
+    rowdiv.setAttribute('style', 'height: 100px');
+    coldiv.classList.add('col', 'd-flex', 'justify-content-center', 'm-2');
+    button.innerText = pokemon.name;
+    button.classList.add('btn', 'btn-success', 'btn-lg', 'btn-block');
+    button.setAttribute('type', 'button');
+    button.setAttribute('style', 'height: 75px');
+    //set button to open bootstrap modal
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#pokemonModal');
+
+    //append button to col div, col div to row div, and row div to container
+    coldiv.appendChild(button);
+    rowdiv.appendChild(coldiv);
+    container.appendChild(rowdiv);
+
+    //change modal to have pokemon details when button is clicked
+    pokemonButtonListener(button, pokemon);
+    
+    /*
     let pokemonList = document.querySelector(".pokemon-list");
     let listPokemon = document.createElement('li');
     let button = document.createElement("button"); //create a button
@@ -35,6 +64,14 @@ let pokemonRepository = (function () {
         button.addEventListener('click', function(){
             showDetails(pokemon);
         });
+    */
+  }
+
+   // add event listener to new pokemon buttton
+  function pokemonButtonListener(button, pokemon) {
+    button.addEventListener('click', function () {
+        showDetails(pokemon);
+    });
   }
 
   function loadDetails(item) {
@@ -83,15 +120,15 @@ let pokemonRepository = (function () {
   }
   //Show Modal function
   function showModal(name, height, type, imageUrl) {
-    let modalContainer = document.querySelector(".modal-container");
+    let modalContainer = document.querySelector("#pokemonModal");
     document.querySelector(".modal-title").innerHTML = name;
     let pokeDescri = "Height: " + height + "<br>type: " + type;
-    document.querySelector('.modal-text').innerHTML = pokeDescri;
-    document.querySelector('.modal-img').setAttribute('src', imageUrl);
+    document.querySelector('.modal-body').innerHTML = pokeDescri;
+    document.querySelector('.modal-body').setAttribute('src', imageUrl);
     console.log(imageUrl);
 
     // Add the new modal content
-    let closeButtonElement = document.querySelector(".modal-close"); 
+    let closeButtonElement = document.querySelector(".btn-close"); 
     closeButtonElement.addEventListener('click', hideModal);
 
     window.addEventListener('keydown', (e) => {
