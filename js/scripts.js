@@ -6,7 +6,6 @@ let pokemonRepository = (function () {
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
   function add(pokemon) {
-    //console.table(pokemon); //debugged my code to solve "pokemon is not correct"
       if(
         typeof pokemon === "object" &&
           "name" in pokemon &&
@@ -15,7 +14,9 @@ let pokemonRepository = (function () {
           pokemonList.push(pokemon);
       }
       else{
+        /* eslint-disable no-console */
         console.log("Pokemon is not correct");
+        /* eslint-enable no-console */
       }  
     }
 
@@ -68,7 +69,9 @@ let pokemonRepository = (function () {
           item.types = details.types;
           item.abilities = details.abilities;
         }).catch(function (e) {
+          /* eslint-disable no-console */
           console.error(e);
+          /* eslint-disable no-console */
     });
   }
 
@@ -77,7 +80,6 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
-        //console.log("item", item)
         let pokemon = {
           name: capitalizeFirstLetter(item.name),
           detailsUrl: item.url,
@@ -89,7 +91,9 @@ let pokemonRepository = (function () {
         //Adds pokemons to the pokemonList Array
       });
     }).catch(function (e) {
+      /* eslint-disable no-console */
       console.error(e);
+      /* eslint-disable no-console */
     })
   }
 
