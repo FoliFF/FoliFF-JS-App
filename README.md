@@ -1,7 +1,7 @@
 # FoliFF-JS-Pokemon-App
  Hisham Olof Janssons JavaScript app
 which is a pokemondex app and will be used for learning on how to use Javascript.
-# From the first screenshot how it would look like to the second screenshot on how it will work:
+# Screenshot examples on how the pokemon app would work:
 # Screenshot 1:
 ![Screenshot1](https://user-images.githubusercontent.com/99507280/163626643-67d87517-2346-4396-88d5-73cd4336a42c.JPG)
 # Screenshot 2:
