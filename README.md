@@ -13,11 +13,19 @@ This project using HTML, CSS, and Javascript to develop a simple app that loads 
 # Links and Libraries
 My Github-page
 - https://github.com/FoliFF/FoliFF-JS-App
+
+
 Live webserver
 - https://foliff.github.io/FoliFF-JS-App/
+
+
 Pokemon API
 - https://pokeapi.co
+
+
 Pokedex of the different pokemon
 - https://pokedex.org/
+
+
 - polyfill.js
 - fetch.js
